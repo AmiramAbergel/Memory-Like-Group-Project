@@ -17,15 +17,32 @@ function Cards() {
       { image: "🍍", active: false, keepUp: false },
       { image: "🍍", active: false, keepUp: false },
     ],
-    isMatch: ["JUNK"],
+    isMatch: [],
   });
+
   function isMatched(index) {
-    state.isMatch.push(state.cardsArr[index]);
-    if (state.isMatch.length === 2) {
-      console.log();
-    }
-    console.log(state.cardsArr[index].image);
-    console.log(state.isMatch);
+    setState((prev) => {
+      prev.isMatch.push(index);
+      if (prev.isMatch.length === 2) {
+        if (
+          prev.cardsArr[prev.isMatch[0]].image ===
+          prev.cardsArr[prev.isMatch[1]].image
+        ) {
+          // (state.cardsArr[state.isMatch[0]].image === state.cardsArr[state.isMatch[1]].image)
+          console.log("WINNNNNNN");
+          prev.isMatch.splice(0, 2);
+          prev.cardsArr[prev.isMatch[0]].keepUp = true;
+          prev.cardsArr[prev.isMatch[1]].keepUp = true;
+        } else {
+          prev.isMatch.splice(0, 2);
+          prev.cardsArr[index].active = false;
+          prev.cardsArr[index].active = false;
+        }
+      }
+      // console.log(state.cardsArr[index].image);
+      console.log(prev.isMatch);
+      return { ...prev };
+    });
   }
   useEffect(() => {
     // Fisher Yates Shuffle
