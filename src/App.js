@@ -1,3 +1,4 @@
+
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LandPage from './components/LandPage';
@@ -18,6 +19,7 @@ function App() {
             </main>
         </div>
     );
+
 }
 
 export default App;
