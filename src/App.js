@@ -1,16 +1,25 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Cards from "./components/Cards";
 
+import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import LandPage from './components/LandPage';
+import About from './components/About';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Cards />
-      </header>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <main>
+                <Routes>
+                    <Route
+                        path='/'
+                        element={<Navigate replace to='/home'></Navigate>}
+                    />
+                    <Route path='/home' element={<LandPage />} />
+                    <Route path='/home' element={<LandPage />} />
+                    <Route path='/about' element={<About />} />
+                </Routes>
+            </main>
+        </div>
+    );
+
 }
 
 export default App;
