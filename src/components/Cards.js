@@ -22,6 +22,11 @@ function Cards(props) {
     });
 
     useEffect(() => {
+        if (state.cardsArr.every((curr) => curr.keepUp === true)) {
+        }
+    }, [state.cardsArr]);
+
+    useEffect(() => {
         // Fisher Yates Shuffle
         function swap(array, i, j) {
             const temp = array[i];

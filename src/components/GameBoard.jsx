@@ -11,18 +11,29 @@ function GameBoard() {
         playerWon: false,
         playerLost: false,
         sound: false,
+        endGame: false,
     });
 
     useEffect(() => {
-        setInterval(() => setTimer((prev) => ++prev), 1000);
-        return () => {};
+        const inter = setInterval(() => setTimer((prev) => ++prev), 1000);
+        return () => scoreData.endGame === true && clearInterval(inter);
     }, []);
 
     return (
         <div>
             <div className='gameBoardContainer'>
                 <Table timer={timer} scoreData={scoreData} />
-                <Cards setScoreData={setScoreData} />
+                <Cards
+                    resetTimer={() => {
+                        setScoreData((prev) => {
+                            prev.endGame = !prev.endGame;
+                            return { ...prev };
+                        });
+                        setTimer(() => 0);
+                    }}
+                    timer={timer}
+                    setScoreData={setScoreData}
+                />
             </div>
         </div>
     );
