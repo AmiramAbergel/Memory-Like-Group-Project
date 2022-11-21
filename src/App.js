@@ -1,9 +1,12 @@
 import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LandPage from "./components/LandPage";
+import About from "./components/About";
+import Cards from "./components/Cards";
 import Table from "./table/Table";
+// =============================================
 function App() {
-
-
-/*
+  /*
 const initialState = {
   wins: 0,
   loses: 0,
@@ -12,10 +15,8 @@ const initialState = {
   playerWon: false,
   playerLost: false,
   sound: false,
-
 };
 */
-
   return (
     <div className="App">
       <header className="App-header">
@@ -25,11 +26,9 @@ const initialState = {
           <Route path="/new-memory-game" element={<Cards />} />
           <Route path="/about" element={<About />} />
         </Routes>
-        
       </header>
     </div>
   );
-
 }
 
 export default App;
