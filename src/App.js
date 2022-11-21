@@ -4,6 +4,7 @@ import LandPage from "./components/LandPage";
 import About from "./components/About";
 import Cards from "./components/Cards";
 import Table from "./table/Table";
+import GameBoard from "./components/GameBoard";
 // =============================================
 function App() {
   /*
@@ -23,7 +24,7 @@ const initialState = {
         <Routes>
           <Route path="/" element={<Navigate replace to="/home"></Navigate>} />
           <Route path="/home" element={<LandPage />} />
-          <Route path="/new-memory-game" element={<Cards />} />
+          <Route path="/new-memory-game" element={<GameBoard />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </header>

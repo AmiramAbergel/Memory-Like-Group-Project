@@ -1,0 +1,11 @@
+.gameBoardContainer {
+  display: flex;
+  flex-direction: row;
+  width: 80vmin;
+}
+
+@media screen and (max-width: 728px) {
+  .gameBoardContainer {
+    flex-direction: column;
+  }
+}

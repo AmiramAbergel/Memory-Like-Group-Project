@@ -1,7 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 @font-face {
   font-family: "diloWorld";
   src: url(../public/assets/fonts/DiloWorld.ttf) format("truetype");
 }
+
 .App {
   text-align: center;
   font-family: diloWorld;
@@ -29,6 +35,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100vw;
+  min-width: 100%;
 }
 
 .App-link {
