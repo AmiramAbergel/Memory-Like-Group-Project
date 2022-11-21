@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 const LandPage = () => {
     return (
         <div>
@@ -13,8 +13,22 @@ const LandPage = () => {
             </main>
             <footer>
                 <h2>Here is our options:</h2>
-                <button>Start New Game</button>
-                <button>About&Credits</button>
+                <button>
+                    <NavLink
+                        style={{ textDecoration: 'none', color: 'white' }}
+                        to={`/new-memory-game`}
+                    >
+                        Start New Game
+                    </NavLink>
+                </button>
+                <button>
+                    <NavLink
+                        style={{ textDecoration: 'none', color: 'white' }}
+                        to={`/about`}
+                    >
+                        About&Credits
+                    </NavLink>
+                </button>
             </footer>
         </div>
     );
