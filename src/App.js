@@ -1,6 +1,8 @@
 import "./App.css";
-
 import Table from "./table/Table";
+function App() {
+
+
 /*
 const initialState = {
   wins: 0,
@@ -13,8 +15,21 @@ const initialState = {
 
 };
 */
-function App() {
-  return <div className="App"></div>;
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/home"></Navigate>} />
+          <Route path="/home" element={<LandPage />} />
+          <Route path="/new-memory-game" element={<Cards />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        
+      </header>
+    </div>
+  );
+
 }
 
 export default App;
