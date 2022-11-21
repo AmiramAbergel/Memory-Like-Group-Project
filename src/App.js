@@ -12,7 +12,7 @@ function App() {
                         element={<Navigate replace to='/home'></Navigate>}
                     />
                     <Route path='/home' element={<LandPage />} />
-
+                    <Route path='/home' element={<LandPage />} />
                     <Route path='/about' element={<About />} />
                 </Routes>
             </main>
