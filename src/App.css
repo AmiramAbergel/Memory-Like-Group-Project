@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "diloWorld";
+  src: url(../public/assets/fonts/DiloWorld.ttf) format("truetype");
+}
 .App {
   text-align: center;
+  font-family: diloWorld;
+  color: white;
+  font-size: 1.2rem;
 }
 
 .App-logo {

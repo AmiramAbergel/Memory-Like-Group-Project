@@ -1,0 +1,22 @@
+.table {
+  padding: 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: max-content;
+  background-color: rgb(194, 194, 118);
+
+  #correct {
+    color: green;
+  }
+  #incorrect {
+    color: red;
+  }
+  #total-score {
+    color: blue;
+  }
+  .time {
+    color: white;
+  }
+}
