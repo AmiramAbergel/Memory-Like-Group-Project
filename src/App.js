@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Table from "./table/Table";
+/*
+const initialState = {
+  wins: 0,
+  loses: 0,
+  totalScore: 0,
+  timer: 0,
+  playerWon: false,
+  playerLost: false,
+  sound: false,
 
+};
+*/
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
