@@ -4,21 +4,28 @@ import { useState } from "react";
 function Cards() {
   const [state, setState] = useState({
     cardsArr: [
-      { image: "🫠", active: false },
-      { image: "🫠", active: false },
-      { image: "🙃", active: false },
-      { image: "🙃", active: false },
-      { image: "👾", active: false },
-      { image: "👾", active: false },
-      { image: "💩", active: false },
-      { image: "💩", active: false },
-      { image: "👻", active: false },
-      { image: "👻", active: false },
-      { image: "🍍", active: false },
-      { image: "🍍", active: false },
+      { image: "🫠", active: false, keepUp: false },
+      { image: "🫠", active: false, keepUp: false },
+      { image: "🙃", active: false, keepUp: false },
+      { image: "🙃", active: false, keepUp: false },
+      { image: "👾", active: false, keepUp: false },
+      { image: "👾", active: false, keepUp: false },
+      { image: "💩", active: false, keepUp: false },
+      { image: "💩", active: false, keepUp: false },
+      { image: "👻", active: false, keepUp: false },
+      { image: "👻", active: false, keepUp: false },
+      { image: "🍍", active: false, keepUp: false },
+      { image: "🍍", active: false, keepUp: false },
     ],
+    isMatch: ["JUNK"],
   });
-
+  function isMatched(index) {
+    state.isMatch.push(state.cardsArr[index]);
+    if (state.isMatch.length === 2) {
+    }
+    console.log(state.cardsArr[index].image);
+    console.log(state.isMatch);
+  }
   useEffect(() => {
     // Fisher Yates Shuffle
     function swap(array, i, j) {
@@ -27,7 +34,6 @@ function Cards() {
       array[j] = temp;
     }
     // ==============================================
-
     function memoryCardsShuffle(array) {
       const length = array.length;
       for (let i = length; i > 0; i--) {
@@ -43,37 +49,23 @@ function Cards() {
     }));
   }, []);
 
-  // setState((prev) => ({
-  //   ...prev,
-  //   cardsArr: memoryCardsShuffle(prev.cardsArr),
-  // }));
-  // const img = (
-  //   <img
-  //     src="images/FlipMe.png"
-  //     alt="Flip Me Logo"
-  //     style={{ width: "100%", height: "100%" }}
-  //   ></img>
-  // );
   const ToggleClass = (index) => {
     setState((prev) => {
-      console.log("prev.cardsArr[index].active", prev.cardsArr[index].active);
       prev.cardsArr[index].active = !prev.cardsArr[index].active;
+      isMatched(index);
       return { ...prev };
     });
-    // console.log(e.target);
-    // setState((prev) => ({ ...prev, active: !prev.active }));
-    // setActive(!isActive);
   };
   return (
     <div className="cardContainer">
       {state.cardsArr.map((card, idx) => {
         return (
           <div
-            className={card.active ? "is-flipped card" : " card"}
+            className={card.active ? "card" : "is-flipped card"}
             key={`${idx + Math.random().toFixed(3)}`}
             onClick={() => ToggleClass(idx)}
           >
-            {card.image}
+            <div className="cardIn">{card.image}</div>
           </div>
         );
       })}
