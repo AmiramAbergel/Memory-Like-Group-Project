@@ -17,9 +17,10 @@ function Cards() {
       { image: "🍍", active: false, keepUp: false },
       { image: "🍍", active: false, keepUp: false },
     ],
-    isMatch: [],
+    isMatch: [], //indexes
+    waitingToClose: false,
   });
-
+  /*
   function isMatched(index) {
     setState((prev) => {
       prev.isMatch.push(index);
@@ -44,6 +45,16 @@ function Cards() {
       return { ...prev };
     });
   }
+  */
+  /*
+  useEffect(() => {
+    state.waitingToClose === true &&
+      setTimeout(
+        () => setState((prev) => ({ ...prev, waitingToClose: false })),
+        2000
+      );
+  }, [state.waitingToClose]);
+*/
   useEffect(() => {
     // Fisher Yates Shuffle
     function swap(array, i, j) {
@@ -68,11 +79,38 @@ function Cards() {
   }, []);
 
   const ToggleClass = (index) => {
-    setState((prev) => {
-      prev.cardsArr[index].active = !prev.cardsArr[index].active;
-      isMatched(index);
-      return { ...prev };
-    });
+    !state.waitingToClose &&
+      setState((prev) => {
+        const cards = prev.cardsArr;
+        const matches = prev.isMatch;
+        //const prevClickedIndex = matches[0];
+        cards[index].active = !cards[index].active;
+        if (
+          matches.length === 1 &&
+          cards[index].keepUp === false &&
+          cards[index].image === cards[matches[0]].image
+        ) {
+          cards[index].active =
+            cards[matches[0]].active =
+            cards[index].keepUp =
+            cards[matches[0]].keepUp =
+              true;
+          matches.pop();
+        } else if (matches.length === 0 && cards[index].keepUp === false) {
+          //first card opened
+          matches.push(index);
+          cards[index].active = true;
+        } else if (
+          matches.length === 1 &&
+          cards[index].keepUp === false &&
+          cards[index].image !== cards[matches[0]].image
+        ) {
+          cards[index].active = cards[matches[0]].active = false;
+          matches.pop();
+          prev.waitingToClose = true;
+        }
+        return { cardsArr: cards, isMatch: matches };
+      });
   };
   return (
     <div className="cardContainer">
