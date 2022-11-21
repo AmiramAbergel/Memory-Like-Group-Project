@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Btn.css';
 /*
  * Landing page, which serves as the first page of the application,
  * with a description and buttons containing routes to match the target.
@@ -18,7 +19,7 @@ const LandPage = () => {
             </main>
             <footer>
                 <h2>Here is our options:</h2>
-                <button>
+                <button className='btn'>
                     <NavLink
                         style={{ textDecoration: 'none', color: 'white' }}
                         to={`/new-memory-game`}
@@ -26,7 +27,7 @@ const LandPage = () => {
                         Start New Game
                     </NavLink>
                 </button>
-                <button>
+                <button className='btn'>
                     <NavLink
                         style={{ textDecoration: 'none', color: 'white' }}
                         to={`/about`}

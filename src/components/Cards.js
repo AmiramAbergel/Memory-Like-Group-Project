@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Cards.css';
 import { useState } from 'react';
-function Cards() {
+function Cards(props) {
     const [state, setState] = useState({
         cardsArr: [
             { image: '🫠', active: false, keepUp: false },
@@ -21,15 +21,6 @@ function Cards() {
         waitingToClose: false,
     });
 
-    /*
-  useEffect(() => {
-    state.waitingToClose === true &&
-      setTimeout(
-        () => setState((prev) => ({ ...prev, waitingToClose: false })),
-        2000
-      );
-  }, [state.waitingToClose]);
-*/
     useEffect(() => {
         // Fisher Yates Shuffle
         function swap(array, i, j) {
@@ -59,11 +50,9 @@ function Cards() {
             setState((prev) => {
                 const cards = prev.cardsArr;
                 const matches = prev.isMatch;
-                //const prevClickedIndex = matches[0];
                 cards[index].active = !cards[index].active;
                 if (
                     matches.length === 1 &&
-                    cards[index].keepUp === false &&
                     cards[index].image === cards[matches[0]].image
                 ) {
                     cards[index].active =
@@ -71,6 +60,10 @@ function Cards() {
                         cards[index].keepUp =
                         cards[matches[0]].keepUp =
                             true;
+                    props.setScoreData((prev) => {
+                        ++prev.wins;
+                        return { ...prev };
+                    });
                     matches.pop();
                 } else if (
                     matches.length === 0 &&
@@ -81,14 +74,31 @@ function Cards() {
                     cards[index].active = true;
                 } else if (
                     matches.length === 1 &&
-                    cards[index].keepUp === false &&
                     cards[index].image !== cards[matches[0]].image
                 ) {
-                    cards[index].active = cards[matches[0]].active = false;
-                    matches.pop();
+                    setTimeout(() => {
+                        setState((st) => {
+                            st.cardsArr[index].active = st.cardsArr[
+                                st.isMatch[0]
+                            ].active = false;
+                            st.isMatch.pop();
+                            st.waitingToClose = false;
+                            return { ...st };
+                        });
+                    }, 1000);
+                    props.setScoreData((prev) => {
+                        ++prev.loses;
+                        return { ...prev };
+                    });
+
                     prev.waitingToClose = true;
                 }
-                return { cardsArr: cards, isMatch: matches };
+
+                return {
+                    cardsArr: cards,
+                    isMatch: matches,
+                    waitingToClose: prev.waitingToClose,
+                };
             });
     };
     return (

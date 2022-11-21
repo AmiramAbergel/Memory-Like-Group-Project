@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import './Btn.css';
 /*
  * This page provides information about the game, links, and credits.
  * There is also a back button on this page that allows you to return to the land page.
@@ -26,7 +26,7 @@ const About = () => {
                 </p>
             </main>
             <footer>
-                <button>
+                <button className='btn'>
                     <NavLink
                         style={{ textDecoration: 'none', color: 'white' }}
                         to={`/home`}
