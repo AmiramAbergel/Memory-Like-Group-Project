@@ -1,5 +1,5 @@
 import styles from "./table.module.scss";
-
+//test push & merge
 export default function Table(props) {
   return (
     <div className={styles.table}>
