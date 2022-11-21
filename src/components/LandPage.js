@@ -1,5 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+/*
+ * Landing page, which serves as the first page of the application,
+ * with a description and buttons containing routes to match the target.
+ */
+//
 const LandPage = () => {
     return (
         <div>
